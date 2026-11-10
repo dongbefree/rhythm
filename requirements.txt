@@ -1,0 +1,4 @@
+# Rhythm core is zero-dependency (pure Python stdlib).
+#
+# Optional extras:
+#   rumps>=0.4.0 ; platform_system == "Darwin"   # macOS menu bar app
