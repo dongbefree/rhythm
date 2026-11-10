@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import tempfile
 from datetime import date, datetime, timedelta
 
 import pytest
@@ -12,10 +13,11 @@ from rhythm.storage import Note
 
 
 @pytest.fixture
-def tmp_home(tmp_path, monkeypatch):
+def tmp_home(monkeypatch):
     """Point RHYTHM_HOME at a temp dir so tests never touch real data."""
-    monkeypatch.setenv("RHYTHM_HOME", str(tmp_path))
-    return tmp_path
+    tmpdir = tempfile.mkdtemp()
+    monkeypatch.setenv("RHYTHM_HOME", tmpdir)
+    return tmpdir
 
 
 def _note(day, category="study", text="x"):
